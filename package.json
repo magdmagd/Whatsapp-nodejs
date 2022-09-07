@@ -4,6 +4,7 @@
   "description": "App uses whatsapp to communicated using Whatsapp Web library",
   "main": "App.js",
   "scripts": {
+    "start": "nodemon ./App",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -17,7 +18,8 @@
     "fs": "^0.0.1-security",
     "http-errors": "^2.0.0",
     "morgan": "^1.10.0",
-    "qrcode": "^1.5.1",
+    "nodemon": "^2.0.19",
+    "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.17.1"
   }
 }
