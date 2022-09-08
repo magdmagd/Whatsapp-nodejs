@@ -19,7 +19,14 @@ const qrCode = require('qrcode-terminal');
 const app   = express();
 const config = require("./config.json");
 const port  = process.env.port || config.port ;
-const client = new Client();
+process.title = "whatsapp-node-api";
+//const client = new Client();
+global.client = new Client(
+  {
+    authStrategy : new LocalAuth(),
+    puppeteer: { headless: true },
+  }
+);//Create Global Client
 
                                                       /*  
                                                       
@@ -31,6 +38,15 @@ app.use(bodyParser.urlencoded({extended:true}))   ;
 app.use(bodyParser.json({limit :"50mb"}));
 
 
+//Routing 
+const contactRoute = require("./components/chat/contact");
+
+
+
+
+app.use("/contact",contactRoute);
+
+//client functionality
 
 client.on('qr', (qr) => 
 {
@@ -85,7 +101,7 @@ app.listen(port,()=>
 });//Create Listen Service for app 
  
 
-module.exports = app;
+module.exports = {app , client};
 
 
 
