@@ -1,2 +1,0 @@
-[0911/153240.166:INFO:CONSOLE(12)] "Deprecation warning: use moment.updateLocale(localeName, config) to change an existing locale. moment.defineLocale(localeName, config) should only be used for creating a new locale See http://momentjs.com/guides/#/warnings/define-locale/ for more info.", source: https://web.whatsapp.com/vendor1~bootstrap_qr.e2addc7b55065fc8b3e2.js (12)
-[0911/153325.055:ERROR:ssl_client_socket_impl.cc(999)] handshake failed; returned -1, SSL error code 1, net_error -101

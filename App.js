@@ -39,12 +39,14 @@ app.use(bodyParser.json({limit :"50mb"}));
 
 
 //Routing 
-const contactRoute = require("./components/chat/contact");
+const contactRoute = require("./components/contact");
+const chatRoute = require("./components/contact");
 
 
 
 
 app.use("/contact",contactRoute);
+app.use("/chat",chatRoute);
 
 //client functionality
 
