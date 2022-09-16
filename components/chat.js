@@ -1,7 +1,7 @@
                 /*
                      Module dependencies.
                 */
-
+const { MessageMedia, Location } = require("whatsapp-web.js");
 const express = require('express');
 
 
@@ -11,6 +11,15 @@ const express = require('express');
         /*
             Constants
             */  
+
+const mediadownloader = (url, path, callback) => 
+{
+                request.head(url, (err, res, body) => {
+                  request(url)
+                    .pipe(fs.createWriteStream(path))
+                    .on('close', callback)
+                })
+}//end  mediadownloader       
 
 const router = express.Router() ;
 
@@ -35,6 +44,33 @@ router.post('/sendmessage/:phone', async (req,res) =>
         });
     }
 });//end post 
+
+
+router.post('/sendlocation/:phone', async (req, res) => 
+{
+    let phone = req.params.phone;
+    let latitude = req.body.latitude;
+    let longitude = req.body.longitude;
+    let desc = req.body.description;
+
+    if (phone == undefined || latitude == undefined || longitude == undefined) 
+    { 
+        res.send({ status: "error", message: "please enter valid Data" })
+    }//end if 
+     else 
+     {
+       let loc = await new Location(latitude, longitude, desc || "");
+       // loc = new Location(latitude, longitude);
+        client.sendMessage(`${phone}@c.us`, loc).then((response)=>{
+           // client.sendMessage(phone + '@c.us', loc).then((response) => {
+            if (response.id.fromMe) 
+            {
+                res.send({ status: 'success', message: `MediaMessage successfully sent to ${phone}` })
+            }//end if 
+        });
+    }//end else
+});//end send locatio  
+
 
 
 router.get('/getchatbyid/:phone', async (req, res) => 

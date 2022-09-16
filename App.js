@@ -87,6 +87,7 @@ client.on('disconnected',()=>
 client.on('message', message => 
 {
 	console.log(message.body);
+  
 });//Read Message
 
 client.on('message', message => 
